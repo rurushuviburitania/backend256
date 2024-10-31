@@ -25,9 +25,10 @@ app.use('/api/usuarios', require('../routes/rutasUsuario'));
 //ruta para verificar el servidor
 
 
-// Set the views directory and view engine 
-app.set('views', path.join(__dirname, 'views')); 
-app.set('view engine', 'ejs'); 
+//servidor modulosEl
+const viewspath = path.join(__dirname,"../views")
+app.set("views", viewspath);
+app.set("view engine", "ejs");
 
 app.get('/', (req,res) => {
     res.render('index');
