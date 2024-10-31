@@ -104,4 +104,3 @@ app.listen(port,() =>{
     console.log('El servidor esta conectado http://localhost:5000');
 })
 
-//prueba
