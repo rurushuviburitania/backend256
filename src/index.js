@@ -31,7 +31,7 @@ app.set("views", viewspath);
 app.set("view engine", "ejs");
 
 app.get('/', (req,res) => {
-    res.render('index');
+    res.render('index.ejs');
 })
 
 app.get('/logout', (req,res) => {
