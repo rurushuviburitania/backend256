@@ -6,9 +6,7 @@ const cors = require('cors');
 
 //creamos nuestro servidor
 const app = express();
-const ejs = require("ejs");
-const path = require("path");
-const port =  process.env.PORT || 7000;
+const port = 5000;
 
 //conexion bases de datos
 conectarBD();
@@ -19,7 +17,8 @@ app.use(express.json());
 app.use('/api/clientes', require('../routes/rutasCliente'));
 app.use('/api/productos', require('../routes/rutasProducto'));
 app.use('/api/usuarios', require('../routes/rutasUsuario'));
-
+const ejs = require("ejs");
+const path = require("path");
 
 
 //ruta para verificar el servidor
@@ -28,10 +27,13 @@ app.use('/api/usuarios', require('../routes/rutasUsuario'));
 //servidor modulosEl
 const viewspath = path.join(__dirname,"../views")
 app.set("views", viewspath);
-app.set("view engine", "ejs");
+app.set('view-engine', 'ejs');
+app.use(express.static('views'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req,res) => {
-    res.render('index.ejs');
+    res.render('index');
 })
 
 app.get('/logout', (req,res) => {
@@ -103,4 +105,3 @@ app.post('/login', async (req,res) => {
 app.listen(port,() =>{
     console.log('El servidor esta conectado http://localhost:5000');
 })
-
