@@ -25,11 +25,11 @@ app.use('/api/usuarios', require('../routes/rutasUsuario'));
 
 //servidor modulosEl
 
-app.set('view-engine', 'ejs');
-
+app.set('views', './views');
+app.set('view engine', 'ejs');
 
 app.get('/', (req,res) => {
-    res.render(__dirname +'/views/index.ejs')
+    res.render('index');
 })
 
 app.get('/logout', (req,res) => {
