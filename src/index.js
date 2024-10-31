@@ -6,6 +6,8 @@ const cors = require('cors');
 
 //creamos nuestro servidor
 const app = express();
+const ejs = require("ejs");
+const path = require("path");
 const port =  process.env.PORT || 7000;
 
 //conexion bases de datos
@@ -24,10 +26,9 @@ app.use('/api/usuarios', require('../routes/rutasUsuario'));
 
 
 //servidor modulosEl
-const path = require("path");
-app.set("views", path.join(__dirname, "views"));
-app.set('view engine', 'ejs');
-app.use(express.static("public"))
+const viewspath = path.join(__dirname,"../views")
+app.set("views", viewspath);
+app.set("view engine", "ejs");
 
 app.get('/', (req,res) => {
     res.render('index');
