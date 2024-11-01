@@ -17,8 +17,8 @@ app.use(express.json());
 app.use('/api/clientes', require('../routes/rutasCliente'));
 app.use('/api/productos', require('../routes/rutasProducto'));
 app.use('/api/usuarios', require('../routes/rutasUsuario'));
-const ejs = require("ejs");
-const path = require("path");
+//const ejs = require("ejs");
+const path = require('path');
 
 
 //ruta para verificar el servidor
