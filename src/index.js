@@ -35,7 +35,7 @@ app.use('/api/usuarios', require('../routes/rutasUsuario'));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req,res) => {
-    res.render('init');
+    res.render('init.ejs');
 })
 
 app.get('/logout', (req,res) => {
@@ -105,5 +105,5 @@ app.post('/login', async (req,res) => {
 
 //ruta de nuestro servidor local
 app.listen(port,() =>{
-    console.log('El servidor esta conectado http://localhost:5000');
+    console.log(`El servidor está conectado en http://localhost:${port}`);
 })
