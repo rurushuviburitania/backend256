@@ -6,7 +6,7 @@ const cors = require('cors');
 
 //creamos nuestro servidor
 const app = express();
-const port = 5000;
+const port =  process.env.PORT || 7000;
 
 //conexion bases de datos
 conectarBD();
