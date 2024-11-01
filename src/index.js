@@ -14,7 +14,7 @@ conectarBD();
 app.use(cors());
 app.use(express.json());
 app.set('view-engine', 'ejs');
-pp.set('views', path.join(__dirname, '../views'));
+app.set('views', path.join(__dirname, '../views'));
 //ruta para consumir la api cliente
 app.use('/api/clientes', require('../routes/rutasCliente'));
 app.use('/api/productos', require('../routes/rutasProducto'));
