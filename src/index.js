@@ -35,7 +35,7 @@ app.use('/api/usuarios', require('../routes/rutasUsuario'));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req,res) => {
-    res.render('index');
+    res.render('init');
 })
 
 app.get('/logout', (req,res) => {
@@ -43,11 +43,11 @@ app.get('/logout', (req,res) => {
 })
 
 app.get('/login', (req,res) => {
-    res.render('login.ejs')
+    res.render('login')
 })
 
 app.get('/register', (req, res) => {
-    res.render('register.ejs', { error: '', data: {} });
+    res.render('register', { error: '', data: {} });
 })
 
 app.post('/register', async (req, res) => {
@@ -55,7 +55,7 @@ app.post('/register', async (req, res) => {
 
     // Verificar si las contraseñas coinciden
     if (password !== confirmPassword) {
-        return res.status(400).render('register.ejs', { error: 'Passwords do not match', data: {nombres, apellidos, documento, telefono, direccion, email} });
+        return res.status(400).render('register', { error: 'Passwords do not match', data: {nombres, apellidos, documento, telefono, direccion, email} });
     }
 
     try {
@@ -63,7 +63,7 @@ app.post('/register', async (req, res) => {
         const existingUser = await loginCollection.findOne({ email });
 
         if (existingUser) {
-            return res.status(400).render('register.ejs', { error: 'Email already registered', data: { nombres, apellidos, documento, telefono, direccion } });
+            return res.status(400).render('register', { error: 'Email already registered', data: { nombres, apellidos, documento, telefono, direccion } });
         }
 
         // Crear y guardar el nuevo usuario
@@ -71,7 +71,7 @@ app.post('/register', async (req, res) => {
         await newUser.save();
         res.redirect('/login');
     } catch (error) {
-        res.status(500).render('register.ejs', { error: 'Server error, Try again.', data: { nombres, apellidos, documento, telefono, direccion } });
+        res.status(500).render('register', { error: 'Server error, Try again.', data: { nombres, apellidos, documento, telefono, direccion } });
     }
 })
 
@@ -86,17 +86,17 @@ app.post('/login', async (req,res) => {
         const user = await loginCollection.findOne({email: email})
 
         if(!user) {
-            return res.status(400).render('login.ejs',{error: 'Incorrect email or password', data: { email } })
+            return res.status(400).render('login',{error: 'Incorrect email or password', data: { email } })
         }
 
         if (user.password !== password) {
-            return res.status(400).render('login.ejs',{error: 'Incorrect password'})
+            return res.status(400).render('login',{error: 'Incorrect password'})
         }
 
         
-        res.render('init.ejs', { nombres: user.nombres });
+        res.render('init', { nombres: user.nombres });
     } catch (error) {
-        res.status(500).render('login.ejs',{error: 'An error occurred. Please try again.'})
+        res.status(500).render('login',{error: 'An error occurred. Please try again.'})
     }
 })
 
