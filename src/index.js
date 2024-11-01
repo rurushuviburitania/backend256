@@ -35,7 +35,7 @@ app.use('/api/usuarios', require('../routes/rutasUsuario'));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req,res) => {
-    res.render('index');
+    res.render('init');
 })
 
 app.get('/logout', (req,res) => {
@@ -94,7 +94,7 @@ app.post('/login', async (req,res) => {
         }
 
         
-        res.render('index.ejs', { nombres: user.nombres });
+        res.render('init.ejs', { nombres: user.nombres });
     } catch (error) {
         res.status(500).render('login.ejs',{error: 'An error occurred. Please try again.'})
     }
