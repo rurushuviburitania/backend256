@@ -35,7 +35,7 @@ app.use('/api/usuarios', require('../routes/rutasUsuario'));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req,res) => {
-    res.render('init');
+    res.render('index');
 })
 
 app.get('/logout', (req,res) => {
