@@ -25,9 +25,10 @@ const path = require("path");
 
 
 //servidor modulosEl
-const viewspath = path.join(__dirname,"../views")
-app.set("views", viewspath);
+//const viewspath = path.join(__dirname,"../views")
+//app.set("views", viewspath);
 app.set('view-engine', 'ejs');
+pp.set('views', path.join(__dirname, '../views'));
 app.use(express.static('views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
