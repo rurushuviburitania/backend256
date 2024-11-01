@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const conectarBD = require('../config/db');
 const loginCollection = require('../models/loginCollection')
 const cors = require('cors');
@@ -12,13 +13,14 @@ const port =  process.env.PORT || 7000;
 conectarBD();
 app.use(cors());
 app.use(express.json());
-
+app.set('view-engine', 'ejs');
+pp.set('views', path.join(__dirname, '../views'));
 //ruta para consumir la api cliente
 app.use('/api/clientes', require('../routes/rutasCliente'));
 app.use('/api/productos', require('../routes/rutasProducto'));
 app.use('/api/usuarios', require('../routes/rutasUsuario'));
 //const ejs = require("ejs");
-const path = require('path');
+
 
 
 //ruta para verificar el servidor
@@ -27,8 +29,7 @@ const path = require('path');
 //servidor modulosEl
 //const viewspath = path.join(__dirname,"../views")
 //app.set("views", viewspath);
-app.set('view-engine', 'ejs');
-pp.set('views', path.join(__dirname, '../views'));
+
 //app.use(express.static('views'));
 //app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
